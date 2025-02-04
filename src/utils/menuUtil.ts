@@ -13,9 +13,9 @@ export async function getMainMenuKeyboard(language: string, role: string, userId
             .text(languageData.dashboard)
             .text(languageData.buyProduct).row()
             .text(languageData.referral)
-            .text(languageData.bonus).row()
-            .text(languageData.support)
-            .text(languageData.aboutUs).row()
+            .text(languageData.bonus)
+            .text(languageData.support).row()
+            .text(languageData.aboutUs)
             .text(languageData.extraMenu);
 
         // Check if user is admin or super admin, and display extra options

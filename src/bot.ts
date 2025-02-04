@@ -16,7 +16,7 @@ bot.command("start", async (ctx) => {
 // Handle language selection
 bot.callbackQuery(/.*/, (ctx) => {
     logger.info(`Received language selection from ${ctx.from?.id}: ${ctx.match}`);
-    languageHandler(ctx);
+    languageHandler(ctx, bot);
 });
 
 // Run the bot

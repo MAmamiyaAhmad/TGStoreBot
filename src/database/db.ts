@@ -1,7 +1,12 @@
 import Database from "better-sqlite3";
 import { User } from "../types/types";
-// Initialize the database (or open if exists)
-const db = new Database("users.db", { verbose: console.log });
+import path from "path";
+
+// Build the path for the database file
+const dbPath = path.join(__dirname, "../database/users.db");
+
+// Initialize the database (or open if exists) with the new path
+const db = new Database(dbPath, { verbose: console.log });
 
 // Create the users table if it doesn't exist
 db.prepare(`
@@ -29,8 +34,8 @@ export function saveUser(userId: number, user: Partial<User>) {
         // Ensure `existingUser` is fully typed
         existingUser = {
             userId,
-            role: user.role || "user", // Default role jika tidak ada
-            language: user.language || "english", // Default language jika tidak ada
+            role: user.role || "user", // Default role if not provided
+            language: user.language || "english", // Default language if not provided
         };
     }
 
