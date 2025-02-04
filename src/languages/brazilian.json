@@ -1,12 +1,10 @@
 {
-    "languageSetMessage": "Language has been set successfully!",
     "dashboard": "📋 Painel",
     "buyProduct": "🛒 Comprar Produto",
     "referral": "🔗 Referência",
     "bonus": "🎁 Bônus",
     "support": "📞 Suporte",
     "aboutUs": "ℹ️ Sobre nós",
-    "extraMenu": "⚙️ Menu extra",
-    "changeLanguage": "🗣️ Mudar idioma"
+    "extraMenu": "⚙️ Menu extra"
   }
   

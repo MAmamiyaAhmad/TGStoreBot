@@ -1,12 +1,10 @@
 {
-    "languageSetMessage": "Language has been set successfully!",
     "dashboard": "📋 ダッシュボード",
     "buyProduct": "🛒 製品を購入",
     "referral": "🔗 紹介",
     "bonus": "🎁 ボーナス",
     "support": "📞 サポート",
     "aboutUs": "ℹ️ 私たちについて",
-    "extraMenu": "⚙️ 追加メニュー",
-    "changeLanguage": "🗣️ 言語を変更"
+    "extraMenu": "⚙️ 追加メニュー"
   }
   

@@ -1,12 +1,10 @@
 {
-    "languageSetMessage": "Language has been set successfully!",
     "dashboard": "📋 대시보드",
     "buyProduct": "🛒 제품 구매",
     "referral": "🔗 추천인",
     "bonus": "🎁 보너스",
     "support": "📞 지원",
     "aboutUs": "ℹ️ 회사 소개",
-    "extraMenu": "⚙️ 추가 메뉴",
-    "changeLanguage": "🗣️ 언어 변경"
+    "extraMenu": "⚙️ 추가 메뉴"
   }
   

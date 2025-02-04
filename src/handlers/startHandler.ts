@@ -1,19 +1,35 @@
 import { Context, Bot } from "grammy";
-import { getLanguageKeyboard, getBotUsername } from "../utils/language";
-import { logger } from "../utils/logger"; // Import the logger
+import { getLanguageKeyboard, getBotUsername } from "../utils/languageUtil";
+import { logger } from "../utils/loggerUtil";
+import { saveUser, getUser } from "../database/db";
+import { getMainMenuKeyboard } from "../utils/menuUtil";
 
 export async function startHandler(ctx: Context, bot: Bot) {
     const userId = ctx.from?.id;
     const firstName = ctx.from?.first_name;
     const username = ctx.from?.username || "Tidak Ada";
 
-    // Log user info
-    logger.info(`User ${firstName} (${userId}) started the bot`);
+    if (!userId) {
+        logger.error("User ID not found.");
+        return;
+    }
 
     try {
-        // Get bot username
-        const botUsername = await getBotUsername(bot);
+        logger.info(`User ${firstName} (${userId}) started the bot`);
 
+        // Periksa apakah user sudah memiliki bahasa yang tersimpan
+        const user = getUser(userId);
+        if (user?.language) {
+            const mainMenu = await getMainMenuKeyboard(user.language, userId);
+            await ctx.reply("✅ Welcome back! Here is your main menu:", {
+                reply_markup: mainMenu,
+                parse_mode: "HTML"
+            });
+            return;
+        }
+
+        // Jika bahasa belum dipilih, tampilkan opsi bahasa
+        const botUsername = await getBotUsername(bot);
         const message = `<b>🌏 Choose Language</b>\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`
             + `🆔 <b>Name:</b> ${firstName}\n`
@@ -29,15 +45,9 @@ export async function startHandler(ctx: Context, bot: Bot) {
             reply_markup: getLanguageKeyboard(),
         });
 
-        // Log success
-        logger.info(`Sent start message to ${firstName} (${userId})`);
-    } catch (error: unknown) {
-        // Type assertion to Error
-        if (error instanceof Error) {
-            logger.error(`Error in startHandler: ${error.message}`);
-        } else {
-            logger.error("Unknown error in startHandler");
-        }
+        logger.info(`Sent language selection to ${firstName} (${userId})`);
+    } catch (error) {
+        logger.error(`Error in startHandler: ${error}`);
         await ctx.reply("⚠️ Something went wrong. Please try again later.");
     }
 }

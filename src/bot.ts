@@ -1,16 +1,17 @@
 import { Bot } from "grammy";
 import { BOT_TOKEN } from "./config/config";
-import { startHandler } from "./handlers/start";
-import { languageHandler } from "./handlers/language";
-import { logger } from "./utils/logger"; // Import the logger
+import { startHandler } from "./handlers/startHandler";
+import { languageHandler } from "./handlers/languageHandler";
+import { logger } from "./utils/loggerUtil"; // Import the logger
 
 const bot = new Bot(BOT_TOKEN);
 
 // Command /start with auto-detect bot username
 bot.command("start", async (ctx) => {
     logger.info(`Received /start command from ${ctx.from?.id}`);
-    await startHandler(ctx, bot);
+    await startHandler(ctx, bot); // Kirim `bot` sebagai argumen
 });
+
 
 // Handle language selection
 bot.callbackQuery(/.*/, (ctx) => {
