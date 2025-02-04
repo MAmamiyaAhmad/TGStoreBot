@@ -13,7 +13,6 @@ db.prepare(`
 `).run();
 
 // Function to get a user by ID
-// Contoh penyimpanan user di database
 const users: Map<number, User> = new Map();
 
 export function getUser(userId: number): User | undefined {

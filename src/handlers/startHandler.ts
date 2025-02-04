@@ -20,8 +20,8 @@ export async function startHandler(ctx: Context, bot: Bot) {
         // Periksa apakah user sudah memiliki bahasa yang tersimpan
         const user = getUser(userId);
         if (user?.language) {
-            const mainMenu = await getMainMenuKeyboard(user.language, userId);
-            await ctx.reply("✅ Welcome back! Here is your main menu:", {
+            const mainMenu = await getMainMenuKeyboard(user.language || 'english', user.role || 'user', userId); // Fix: Added role and fallback for language
+            await ctx.reply(`✅ Welcome back! ${firstName}\nHere is your main menu:`, {
                 reply_markup: mainMenu,
                 parse_mode: "HTML"
             });
@@ -36,7 +36,7 @@ export async function startHandler(ctx: Context, bot: Bot) {
             + ` \u251c <b>Username:</b> @${username}\n`
             + ` \u251c <b>ID Telegram:</b> <code>${userId}</code>\n`
             + ` \u2514 <b>Link:</b> <a href="https://t.me/${botUsername}?start=${userId}">Click Here</a>\n\n`
-            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>Bot Monitoring</b>\n<b>🌏 Please Choose your Language</b>\n\n`
+            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>${botUsername}</b>\n<b>🌏 Please Choose your Language</b>\n\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`;
 
         await ctx.replyWithPhoto("https://imgur.com/a/mXrMZsI", {

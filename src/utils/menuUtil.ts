@@ -1,19 +1,13 @@
 import { Keyboard } from "grammy";
-import { getUser } from "../database/db";
-import { User } from "../types/types";
 import { loadTranslations } from "./languageUtil";
-import dotenv from "dotenv";
+import { SUPER_ADMIN_ID, ADMIN_IDS } from "../config/config"; // Import SUPER_ADMIN_ID and ADMIN_IDS
 
-dotenv.config();
-
-const SUPER_ADMIN_ID = process.env.SUPER_ADMIN_ID ? Number(process.env.SUPER_ADMIN_ID) : 0;
-const ADMIN_IDS = process.env.ADMIN_IDS ? process.env.ADMIN_IDS.split(",").map(Number) : [];
-
-export async function getMainMenuKeyboard(language: string, userId: number) {
+export async function getMainMenuKeyboard(language: string, role: string, userId: number) {
     try {
         const languageData = loadTranslations(language);
-        const userData = getUser(userId);
-        const user: User | undefined = typeof userData === "object" ? (userData as User) : undefined;
+
+        // Debug log to check role
+        console.log(`User role: ${role}`);
 
         const keyboard = new Keyboard()
             .text(languageData.dashboard)
@@ -24,13 +18,18 @@ export async function getMainMenuKeyboard(language: string, userId: number) {
             .text(languageData.aboutUs).row()
             .text(languageData.extraMenu);
 
-        if (user && (user.role === "admin" || user.role === "super_admin")) {
+        // Check if user is admin or super admin, and display extra options
+        if (role === "admin" || role === "super_admin") {
             keyboard.row().text(languageData.adminMenu);
         }
 
         return keyboard.resized();
-    } catch (error) {
-        console.error(`Failed to generate menu keyboard: ${error}`);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            console.error(`Failed to generate menu keyboard: ${error.message}`);
+        } else {
+            console.error("An unknown error occurred");
+        }
         throw new Error("Failed to generate main menu.");
     }
 }
