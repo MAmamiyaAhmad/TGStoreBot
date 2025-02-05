@@ -3,19 +3,26 @@ import { Bot } from "grammy";
 import * as fs from "fs";
 import path from "path";
 
-// Fungsi untuk memuat file terjemahan berdasarkan bahasa yang dipilih
+/// Fungsi untuk memuat file terjemahan berdasarkan bahasa yang dipilih
 export function loadTranslations(language: string) {
-    const filePath = path.join(__dirname, "..", "languages", `${language}.json`);
+    // Pastikan nama file selalu dalam huruf kecil
+    const languageFile = `${language.toLowerCase()}.json`;
+
+    // Tentukan path yang benar
+    const filePath = path.resolve(__dirname, "..", "..", "languages", languageFile);
 
     try {
         const translations = JSON.parse(fs.readFileSync(filePath, "utf8"));
         return translations;
     } catch (error: unknown) {
         console.error(`Failed to load translations for ${language}:`, (error as Error).message);
-        const defaultPath = path.join(__dirname, "..", "languages", "english.json");
+
+        // Jika file bahasa tidak ditemukan, gunakan default "english.json"
+        const defaultPath = path.resolve(__dirname, "..", "..", "languages", "english.json");
         return JSON.parse(fs.readFileSync(defaultPath, "utf8"));
     }
 }
+
 
 export function getLanguageKeyboard() {
     return new InlineKeyboard()

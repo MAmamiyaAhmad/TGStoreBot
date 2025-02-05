@@ -1,8 +1,8 @@
 import { Context, Bot } from "grammy";
-import { getLanguageKeyboard, getBotUsername } from "../utils/languageUtil";
-import { logger } from "../utils/loggerUtil";
+import { getLanguageKeyboard, getBotUsername } from "../utils/language/languageUtil";
+import { logger } from "../utils/log/loggerUtil";
 import { saveUser, getUser, setUserLanguage } from "../database/db"; // ✅ Perbaikan
-import { getMainMenuKeyboard } from "../utils/menuUtil";
+import { getMainMenuKeyboard } from "../utils/menu/menuUtil";
 
 export async function startHandler(ctx: Context, bot: Bot) {
     const userId = ctx.from?.id;

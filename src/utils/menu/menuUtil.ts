@@ -1,6 +1,7 @@
 import { Keyboard } from "grammy";
-import { loadTranslations } from "./languageUtil";
-import { SUPER_ADMIN_ID, ADMIN_IDS } from "../config/config"; // Import SUPER_ADMIN_ID and ADMIN_IDS
+import { loadTranslations } from "../language/languageUtil";
+import { SUPER_ADMIN_ID, ADMIN_IDS } from "../../configs/config";
+ // Import SUPER_ADMIN_ID and ADMIN_IDS
 
 export async function getMainMenuKeyboard(language: string, role: string, userId: number) {
     try {

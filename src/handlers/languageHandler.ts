@@ -1,9 +1,9 @@
 import { Bot, Context } from "grammy";  // Import Bot and Context
-import { getMainMenuKeyboard } from "../utils/menuUtil";
+import { getMainMenuKeyboard } from "../utils/menu/menuUtil";
 import { saveUser } from "../database/db";
-import { logger } from "../utils/loggerUtil";
-import { SUPER_ADMIN_ID } from "../config/config"; // Import SUPER_ADMIN_ID
-import { getBotUsername } from "../utils/languageUtil"; // Import getBotUsername
+import { logger } from "../utils/log/loggerUtil";
+import { SUPER_ADMIN_ID } from "../configs/config"; // Import SUPER_ADMIN_ID
+import { getBotUsername } from "../utils/language/languageUtil"; // Import getBotUsername
 
 export async function languageHandler(ctx: Context, bot: Bot) {  // Add 'bot' as a parameter
     const userId = ctx.from?.id;

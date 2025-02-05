@@ -1,8 +1,8 @@
 import { Bot } from "grammy";
-import { BOT_TOKEN } from "./config/config";
+import { BOT_TOKEN } from "./configs/config";
 import { startHandler } from "./handlers/startHandler";
 import { languageHandler } from "./handlers/languageHandler";
-import { logger } from "./utils/loggerUtil"; // Import the logger
+import { logger } from "./utils/log/loggerUtil"; // Import the logger
 
 const bot = new Bot(BOT_TOKEN);
 
