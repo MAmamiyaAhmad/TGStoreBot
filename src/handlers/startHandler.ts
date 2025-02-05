@@ -24,14 +24,14 @@ export async function startHandler(ctx: Context, bot: Bot) {
 
             const message = `<b>Main Menu</b>\n`
                 + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`
+                + `👁‍🗨 Hello <b>${firstName}</b>, Welcome back to <b>${botUsername}</b>\n\n`
                 + `🆔 <b>Name:</b> ${firstName}\n`
                 + ` ├ <b>Username:</b> @${username}\n`
                 + ` ├ <b>ID Telegram:</b> <code>${userId}</code>\n`
                 + ` └ <b>Link:</b> <a href="https://t.me/${botUsername}?start=${userId}">Click Here</a>\n\n`
-                + `👁‍🗨 Hello <b>${firstName}</b>, Welcome back to <b>${botUsername}</b>\n`
                 + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`;
 
-            await ctx.replyWithPhoto("https://i.imgur.com/mXrMZsI.jpg", {
+            await ctx.replyWithPhoto("https://imgur.com/6g7KrfF", {
                 caption: message,
                 parse_mode: "HTML",
                 reply_markup: mainMenuKeyboard,
@@ -43,14 +43,15 @@ export async function startHandler(ctx: Context, bot: Bot) {
         const botUsername = await getBotUsername(bot); // ✅ Perbaikan
         const message = `<b>🌏 Choose Language</b>\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`
+            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>${botUsername}</b>\n\n`
             + `🆔 <b>Name:</b> ${firstName}\n`
             + ` ├ <b>Username:</b> @${username}\n`
             + ` ├ <b>ID Telegram:</b> <code>${userId}</code>\n`
             + ` └ <b>Link:</b> <a href="https://t.me/${botUsername}?start=${userId}">Click Here</a>\n\n`
-            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>${botUsername}</b>\n<b>🌏 Please Choose your Language</b>\n\n`
+            + `<b>🌏 Please Choose your Language</b>\n\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`;
 
-        await ctx.replyWithPhoto("https://i.imgur.com/mXrMZsI.jpg", {
+        await ctx.replyWithPhoto("https://imgur.com/1b0fIg3", {
             caption: message,
             parse_mode: "HTML",
             reply_markup: getLanguageKeyboard(),
@@ -87,15 +88,16 @@ export async function languageSelectionHandler(ctx: Context, language: string, b
 
         const message = `<b>Main Menu</b>\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`
+            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome back to <b>${botUsername}</b>\n\n`
             + `🆔 <b>Name:</b> ${firstName}\n`
             + ` ├ <b>Username:</b> @${username}\n`
             + ` ├ <b>ID Telegram:</b> <code>${userId}</code>\n`
             + ` └ <b>Link:</b> <a href="https://t.me/${botUsername}?start=${userId}">Click Here</a>\n\n`
-            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>${botUsername}</b>\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`;
 
+
         // ✅ Hapus ctx.reply() yang menampilkan teks berlebih
-        await ctx.replyWithPhoto("https://i.imgur.com/mXrMZsI.jpg", {
+        await ctx.replyWithPhoto("https://imgur.com/6g7KrfF", {
             caption: message,
             parse_mode: "HTML", // Jika MarkdownV2: "MarkdownV2"
             reply_markup: mainMenuKeyboard,

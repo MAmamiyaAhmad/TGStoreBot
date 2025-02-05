@@ -7,6 +7,8 @@ import { getBotUsername } from "../utils/languageUtil"; // Import getBotUsername
 
 export async function languageHandler(ctx: Context, bot: Bot) {  // Add 'bot' as a parameter
     const userId = ctx.from?.id;
+    const firstName = ctx.from?.first_name;
+    const username = ctx.from?.username || "Tidak Ada";
     const language = ctx.callbackQuery?.data;
 
     if (!userId || !language) {
@@ -24,10 +26,14 @@ export async function languageHandler(ctx: Context, bot: Bot) {  // Add 'bot' as
 
         const botUsername = await getBotUsername(bot);  // Pass 'bot' to the function
         const mainMenu = await getMainMenuKeyboard(language, role, userId);
-        await ctx.replyWithPhoto("https://i.imgur.com/mXrMZsI.jpg", {
+        await ctx.replyWithPhoto("https://imgur.com/6g7KrfF", {
             caption: `<b>Main Menu</b>\n`  // Or add your message here in HTML format
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`
-            + `👁‍🗨 Welcome back to <b>${botUsername}</b>\n`
+            + `👁‍🗨 Hello <b>${firstName}</b>, Welcome to <b>${botUsername}</b>\n\n`
+            + `🆔 <b>Name:</b> ${firstName}\n`
+            + ` ├ <b>Username:</b> @${username}\n`
+            + ` ├ <b>ID Telegram:</b> <code>${userId}</code>\n`
+            + ` └ <b>Link:</b> <a href="https://t.me/${botUsername}?start=${userId}">Click Here</a>\n\n`
             + `•❂•─•─•❂•─•❂••❂•─•❂•─•─•❂•\n\n`,
             parse_mode: "HTML", // Or change to MarkdownV2 if needed
             reply_markup: mainMenu,
